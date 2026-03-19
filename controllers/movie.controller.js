@@ -23,6 +23,18 @@ class MovieController {
         }
     }
 
+    async getMoviesAndReviews(req, res) {
+        try {
+            const movie = await MovieServices.getMovieByIdAndReviews(req.params.id)
+
+            if (!movie) res.json({ message: 'Movie not found' })
+
+            return res.status(200).json(movie)
+        } catch (error) {
+            return res.json({ message: error })
+        }
+    }
+
      async getMoviesAndReviews(req, res) {
         try {
             const movies = await MovieServices.getMoviesAndReviews()                              

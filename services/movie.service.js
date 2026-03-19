@@ -9,6 +9,15 @@ class MovieService {
         return await Movie.findByPk(id)
     }
 
+    async getMovieByIdAndReviews(id) {
+        return await Movie.findByPk(id, {
+            include: [{
+                model: Review,
+                as: 'reviews'
+            }]
+        })
+    }
+
     async getMoviesAndReviews() {
 
         try {
