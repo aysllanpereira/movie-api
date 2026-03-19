@@ -1,4 +1,4 @@
-const { Movie, Review } = require('../models')
+const { Movie, Review, User } = require('../models')
 
 class MovieService {
     async getAllMovies() {
@@ -7,6 +7,20 @@ class MovieService {
 
     async getMovieById(id) {
         return await Movie.findByPk(id)
+    }
+
+    async getMoviesAndReviews() {
+
+        try {
+            return await Review.findAll({
+                include: [
+                    { model: Movie, as: 'movies' },
+                    { model: User, as: 'users' }
+                ]
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async create(data) {

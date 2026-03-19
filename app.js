@@ -20,7 +20,7 @@ async function startServer() {
         await sequelize.authenticate();
         console.log('Banco conectado');
 
-        await sequelize.sync( { alter: true } );
+        await sequelize.sync();
         
         app.listen(3000, () => {
             console.log(`Servidor rodando na porta 3000`);

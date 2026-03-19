@@ -23,6 +23,18 @@ class MovieController {
         }
     }
 
+     async getMoviesAndReviews(req, res) {
+        try {
+            const movies = await MovieServices.getMoviesAndReviews()                              
+
+            if (!movies) res.json({ message: 'Movies not found' })
+
+            return res.status(200).json(movies)
+        } catch (error) {
+            return res.json({ message: error })
+        }
+    }
+
     async createMovie(req, res) {
         try {
             const movie = await MovieServices.create(req.body)

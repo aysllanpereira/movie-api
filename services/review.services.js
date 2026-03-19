@@ -17,8 +17,7 @@ class ReviewServices {
     };
 
     async getReviewById(id) {
-        return await Review.findByPk({
-            where: { id },
+        return await Review.findByPk(id, {
             include: [{
                 model: User,
                 as: 'users'
